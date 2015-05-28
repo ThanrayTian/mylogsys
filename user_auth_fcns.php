@@ -1,3 +1,4 @@
+
 <!--filename  :   user_auth_fcns.php-->
 <!--author    :   thanray-->
 
@@ -8,9 +9,10 @@ require_once('db_fcns.php');
 function register($username,$passwd,$email) {
 
     $conn = db_connect();
-    $query = 'select * from myuser where username=\''.$usernmae.'\'';
+    $query = 'select * from myuser where username=\''.$username.'\'';
     $result = $conn->query($query);
     if(!$result) {
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . " ";
         throw new Exception('Could not execute query.');
     }
 
@@ -24,6 +26,7 @@ function register($username,$passwd,$email) {
 
     $result = $conn->query($query);
     if(!$result) {
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . " ";
         throw new Exception('Could not register you in database - Please try 
             again later.');
     }
@@ -34,17 +37,18 @@ function register($username,$passwd,$email) {
 function login($username,$passwd) {
     
     $conn = db_connect();
-    $query = 'select * form myuser where username=\''.$username.'\'and passwd=\''
-        .$passwd.'\''; 
+    $query = 'select * from myuser where username =\'' . $username.'\' and '
+        . 'passwd =\'' . sha1($passwd) . '\''; 
     $result = $conn->query($query);
     if(!$result) {
-        throw new Exception('Could not log you in.');
+        echo mysqli_errno($conn) . ": " . mysqli_error($conn) . " ";
+        throw new Exception('Login in: Could not execute the query.');
     }
 
     if($result->num_rows > 0) {
         return true;
     } else {
-        throw new Exception('Could not log you in.');        
+        throw new Exception('Wrong username or password.');        
     }
 }
 
@@ -60,5 +64,32 @@ function check_valid_user() {
 }
 
 
+function change_passwd($username,$old_passwd,$new_passwd) {
+
+    //can use login() to replace.
+    $conn = db_connect();
+    $query = 'select * from myuser 
+            where username = \'' . $username . '\' and 
+            passwd = \'' . sha1($old_passwd) . '\'';
+    $result = $conn->query($query);
+    if(!$result) {
+        echo mysqli_errno() . " : " . mysqli_error() . "<br/>";
+        throw new Exception('Check old password : 
+            Could not execute the query.');
+    }
+    if($result->num_rows <= 0) {
+        throw new Exception('Your old password could not match the username.');
+    }
+
+    //
+    $query = 'update myuser set passwd = \''. sha1($new_passwd) .
+        '\' where username = \'' . $username . '\'';    
+    $result = $conn->query($query);
+    if(!$result) {
+        throw new Exception('Update the password : 
+            Could not execute the query');
+    }
+    return true;
+}
 
 ?>

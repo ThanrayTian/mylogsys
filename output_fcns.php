@@ -74,5 +74,44 @@ function display_login_form() {
 
 }
 
+function display_menu() {
+
+    do_html_url('login.php','Homepage');
+    do_html_url('change_passwd_form.php','Change Password');
+    do_html_url('logout.php','Logout');
+    echo "<br/>";
+
+}
+
+function display_change_passwd_form() {
+
+?>
+
+    <form action="change_passwd.php" method="post">
+    <table border="0">
+    <tr>
+        <td>old password:</td>
+        <td align="center"><input type="password" name="old_passwd" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td>new password:</td>
+        <td align="center"><input type="password" name="new_passwd1" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td>new password again:</td>
+        <td align="center"><input type="password" name="new_passwd2" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" value="Change"/></td>
+    </tr>
+    </form>
+
+<?php
+
+} 
+
 ?>
 

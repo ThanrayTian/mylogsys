@@ -6,12 +6,13 @@
 function filled_out($array) {
     
     foreach ($array as $key => $value) {
-        if(!isset($key) || !isset($value)) {
+        if(!$key || !$value) {
             return false;
         }
     }
     return true;
 }
+
 
 function valid_email($email) {
 
