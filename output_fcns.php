@@ -31,7 +31,7 @@ function display_register_form() {
     <tr>
         <td colspan="2" align="center"><input type="submit" value="Submit"/></td>
     </tr>
-
+    </form>
 <?php
 
 }
@@ -45,10 +45,34 @@ function do_html_footer() {
 }
 
 function do_html_url($url,$value) {
-    echo "<a href=\"".$url."\">".$value."</a>";
+    echo "<a href=\"".$url."\">".$value."</a>&nbsp&nbsp";
 }
 
 ?>
+<?php
 
+function display_login_form() {
 
+?>
+    <form action="login.php" method="post">
+    <table border="0">
+    <tr>
+        <td>username:</td>
+        <td align="center"><input type="text" name="username" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td>password:</td>
+        <td align="center"><input type="password" name="passwd" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" value="Login"/></td>
+    </tr> 
+    </form>
+<?php
+
+}
+
+?>
 

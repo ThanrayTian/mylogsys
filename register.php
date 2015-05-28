@@ -30,6 +30,12 @@ try{
             Please go back and try again.');
     }
 
+
+    if(strlen($username)<6) {
+        throw new Exception('Your username must be longer than 6 characters. -
+            Please go back and try again.');
+    }
+
     if( (strlen($passwd1)<6) || (strlen($passwd1)>16) ) {
         throw new Exception('Your password must be between 6 to 16 characters. -
             Please go back and try again.');
