@@ -18,29 +18,29 @@ session_start();
 try{
     //此时直接url进入register( 有$count(_POST))==0 )是不正确的.
     if(!count($_POST) || !filled_out($_POST)) {
-        throw new Exception('You have not filled the form out correctly. -
-            Please go back and try again.');
+        throw new Exception('You have not filled the form out correctly 
+            - Please go back and try again.');
     }
 
     if(!valid_email($email)) {
-        throw new Exception('That is not a valid email address. -
-            Please go back and try again.');
+        throw new Exception('That is not a valid email address 
+            - Please go back and try again.');
     }
 
     if($passwd1 != $passwd2) {
-        throw new Exception('The two password do not match -
-            Please go back and try again.');
+        throw new Exception('The two password do not match 
+            - Please go back and try again.');
     }
 
 
     if(strlen($username)<6) {
-        throw new Exception('Your username must be longer than 6 characters -
-            Please go back and try again.');
+        throw new Exception('Your username must be longer than 6 characters 
+            - Please go back and try again.');
     }
 
     if( (strlen($passwd1)<6) || (strlen($passwd1)>16) ) {
-        throw new Exception('Your password must be between 6 to 16 characters -
-            Please go back and try again.');
+        throw new Exception('Your password must be between 6 to 16 characters 
+            - Please go back and try again.');
     }
 
     register($username,$passwd1,$email);

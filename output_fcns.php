@@ -113,5 +113,51 @@ function display_change_passwd_form() {
 
 } 
 
-?>
+function display_forgot_passwd_form() {
 
+?>
+    <form action="" method="post">
+    <table border="0">
+    <tr>
+        <td>username:</td>
+        <td align="center"><input type="text" name="username" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td>email:</td>
+        <td align="center"><input type="email" name="email" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" value="Change"/></td>
+    </tr>
+    </form>
+
+<?php
+
+}
+
+function display_reset_passwd_form() {
+
+?>
+    <form action="" method="post">
+    <table border="0">
+    <tr>
+        <td>new password:</td>
+        <td align="center"><input type="password" name="new_passwd1" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td>password again:</td>
+        <td align="center"><input type="password" name="new_passwd2" size="3"
+            maxlength="16" style="width:200px;"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><input type="submit" value="Change"/></td>
+    </tr>
+    </form>
+<?php
+
+}
+
+?>
